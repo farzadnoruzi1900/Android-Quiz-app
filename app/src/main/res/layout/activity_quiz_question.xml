@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".QuizQuestionActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:orientation="vertical"
+       android:padding="20dp">
+      <!-- the reason we use tools is to just show the content of this view in
+       design mode not in the running application layout-->
+       <TextView
+           android:id="@+id/tv_question"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           tools:text="what country does this flag belong to?"
+           android:textSize="25sp"
+           android:textColor="#363A43"
+           android:layout_marginTop="16dp"
+           android:gravity="center"/>
+       <ImageView
+           android:id="@+id/iv_flag"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           tools:src="@drawable/ic_flag_of_belgium"
+           android:layout_marginTop="16dp"
+           android:contentDescription="Quiz Image"/>
+       <!--contentDescription is for the people who can not see anything and it is
+       a description for them .-->
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginTop="16dp"
+           android:gravity="center"
+           >
+           <ProgressBar
+               android:id="@+id/progress_bar"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:max="9"
+               android:minHeight="50dp"
+               android:progress="5"
+               style="?android:attr/progressBarStyleHorizontal"
+               android:indeterminate="false"
+               />
+           <!--indeterminate false the animation around the progress bar because we are
+           not downloading anything we are fixing .-->
+           <TextView
+               android:id="@+id/tv_progress"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               tools:text="0/9"
+               android:gravity="center"
+               android:padding="15dp"
+               android:textSize="13sp"/>
+
+       </LinearLayout>
+       <TextView
+           android:id="@+id/tv_option_one"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/default_option_border_bg"
+           android:textSize="20sp"
+           android:textColor="#7a8089"
+           android:gravity="center"
+           android:layout_marginTop="10dp"
+           android:padding="10dp"
+           tools:text="Apple"/>
+
+       <TextView
+           android:id="@+id/tv_option_two"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/default_option_border_bg"
+           android:textSize="20sp"
+           android:textColor="#7a8089"
+           android:gravity="center"
+           android:layout_marginTop="10dp"
+           android:padding="10dp"
+           tools:text="Apple"/>
+
+       <TextView
+           android:id="@+id/tv_option_three"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/default_option_border_bg"
+           android:textSize="20sp"
+           android:textColor="#7a8089"
+           android:gravity="center"
+           android:layout_marginTop="10dp"
+           android:padding="10dp"
+           tools:text="Apple"/>
+
+       <TextView
+           android:id="@+id/tv_option_four"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/default_option_border_bg"
+           android:textSize="20sp"
+           android:textColor="#7a8089"
+           android:gravity="center"
+           android:layout_marginTop="10dp"
+           android:padding="10dp"
+           tools:text="Apple"/>
+       <Button
+           android:id="@+id/btn_submit"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:backgroundTint="#ffb703"
+           android:textColor="@color/white"
+           android:layout_marginTop="10dp"
+           android:text="SUBMIT"
+           android:textStyle="bold"
+           android:textSize="16sp"/>
+   </LinearLayout>
+</ScrollView>
