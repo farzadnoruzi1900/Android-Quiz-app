@@ -18,6 +18,10 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
+            <!--
+            when we set it on portrait it wont rotate to the side anymore .
+-->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

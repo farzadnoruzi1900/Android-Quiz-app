@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+       <!-- by this we get rid of the even the thin bar which remain after choosing the no action bar
+        on top of the page .-->
         <item name="android:windowFullscreen">true</item>
     </style>
     <style name="Theme.QuizApp.NoActionBar">
