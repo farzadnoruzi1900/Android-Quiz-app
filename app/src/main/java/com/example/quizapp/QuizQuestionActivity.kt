@@ -168,6 +168,8 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
                     if (mCurrentPosition == questionList?.size) {
                         btnSubmit?.text = "FINISH"
+                        mSelectedOptionPsition = 0
+
                     } else {
                         btnSubmit?.text = "GO TO NEXT QUESTION"
                         mSelectedOptionPsition = 0
