@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             by intent we are saying we are going from this context to the quizquestionactivity
 */
                 val intent = Intent(this, QuizQuestionActivity::class.java)
+            /*    it is a method we use to send the data to other activities and good practice
+                is to use the constants and then embed the data you wanna send to the constant and send it
+                        over */
+                intent.putExtra(Constant.USER_NAME,etName.text.toString())
 //            but the intent by its own do not start the new activity to do so we use this class
                 startActivity(intent)
 //            and to finish the current activity we have to say

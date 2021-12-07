@@ -1,6 +1,7 @@
 package com.example.quizapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -27,6 +28,8 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private var questionList: ArrayList<Question>? = null
     private var mCurrentPosition: Int = 1
     private var mSelectedOptionPsition: Int = 0
+    private var mUserName: String? = null
+    private var mCorrectAnswer : Int = 0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +37,8 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_quiz_question)
         findViewsByIds()
         questionList = Constant.getQuestions()
-
+        mUserName = intent.getStringExtra(Constant.USER_NAME)
         setQuestion()
-
 
         tvoptionTwo?.setOnClickListener(this)
         tvoptionthree?.setOnClickListener(this)
@@ -59,6 +61,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setQuestion() {
+        defaultOptionView()
         val question = questionList!![mCurrentPosition - 1]
         progress?.progress = mCurrentPosition
         tvquestion?.text = question.title
@@ -139,9 +142,68 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             R.id.btn_submit -> {
-//TODO
+                if (mSelectedOptionPsition == 0) {
+                    mCurrentPosition++
+                    when {
+                        mCurrentPosition <= questionList!!.size -> {
+                            setQuestion()
+                        }
+                        else -> {
+                            val intent = Intent(this, Result::class.java)
+                            intent.putExtra(Constant.USER_NAME,mUserName)
+                            intent.putExtra(Constant.CORRECT_ANSWER,mCorrectAnswer)
+                            intent.putExtra(Constant.TOTAL_QUESTIONS,questionList?.size)
+                            startActivity(intent)
+//            and to finish the current activity we have to say
+                            finish()
+                        }
+                    }
+                } else {
+                    val question = questionList!![mCurrentPosition - 1]
+                    if (question.correctAnswer != mSelectedOptionPsition) {
+                        answerView(mSelectedOptionPsition, R.drawable.wrong_option_border_bg)
+                    }else{
+                        mCorrectAnswer++
+                    }
+                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+                    if (mCurrentPosition == questionList?.size) {
+                        btnSubmit?.text = "FINISH"
+                    } else {
+                        btnSubmit?.text = "GO TO NEXT QUESTION"
+                        mSelectedOptionPsition = 0
+                    }
+                }
             }
         }
 
+    }
+
+    private fun answerView(number: Int, drawableCheck: Int) {
+        when (number) {
+            1 -> {
+                tvoptionOne?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableCheck
+                )
+            }
+            2 -> {
+                tvoptionTwo?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableCheck
+                )
+            }
+            3 -> {
+                tvoptionthree?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableCheck
+                )
+            }
+            4 -> {
+                tvoptionfour?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableCheck
+                )
+            }
+        }
     }
 }

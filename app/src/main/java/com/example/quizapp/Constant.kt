@@ -1,6 +1,12 @@
 package com.example.quizapp
 
 object Constant {
+  /*  it is the way we declare constant and do not forget it is a good practice when we want to send a data
+    from one activity to the another one we better first declare a constant related to that data which we want to send
+    for instance in here we are gonna send name from editText in first page to the Result activity */
+    const val USER_NAME :String="USER_NAME"
+    const val CORRECT_ANSWER: String="CORRECT_ANSWER"
+    const val TOTAL_QUESTIONS: String="ALL_QUESTIONS"
     fun getQuestions():ArrayList<Question>{
         val questions = ArrayList<Question>()
 
